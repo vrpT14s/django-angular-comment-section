@@ -1,0 +1,10 @@
+<mat-card>
+	<mat-card-header>
+		<b> {{ comment.timestamp | date:"medium" }} </b>
+	</mat-card-header>
+	<img mat-card-image *ngIf="comment.image" [src]="comment.image"/>
+	<mat-card-content *ngIf="comment.text">
+		{{ comment.text }}
+	</mat-card-content>
+
+</mat-card>
