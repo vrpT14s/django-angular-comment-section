@@ -5,7 +5,15 @@ This is an example/mock project to learn more about mainly angular but also some
 [![Demo Video](./demo-image.jpg)](https://github.com/vrpT14s/django-angular-comment-section/issues/1#issue-3102428618)
 
 ## Instructions to run locally
-You have to start the django server (it'll be at http://localhost:8000)
+You can use the startup script:
+
+```./startservers.sh```
+
+or do it manually (see below). In eithercase the website will be at http://localhost:4200/
+
+The startup script starts the servers in the background so it might be difficult to kill them (you'll have to use ```killall``` or ```pidof``` with ```kill```).
+
+To start it manually, you have to start the django server (it'll be at http://localhost:8000)
 
 ```cd backend && ./manage.py runserver```
 
@@ -14,10 +22,6 @@ and the angular server (which will be at http://localhost:4200)
 ```cd frontend/dacs && npm install && ng serve```
 
 (I am not sure exactly if you need to do npm install).
-
-Then you can access the website at http://localhost:4200/
-
-I added a startup script that does this so you can run that as well, with ```./startservers.sh```. This will start both servers in the background though, so it might be difficult to kill them (you'll have to use ```killall``` or ```pidof``` with ```kill```).
 
 ## Database Design
 Only one table that has text, an image and a timestamp.
