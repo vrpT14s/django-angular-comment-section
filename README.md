@@ -1,7 +1,7 @@
 # django-angular-comment-section
 This is an example/mock project to learn more about mainly angular but also some features of django. I am more interested in the backend and API's (so the backend-frontend connection) than UI/UX so I'll try to make the UI very minimal and simple but reactive so it won't feel like something I can do with plain html/css/js.
 
-# Demo (click to link to video)
+# Demo (click or hover to see video)
 [![Demo Video](./demo-image.jpg)](https://github.com/vrpT14s/django-angular-comment-section/issues/1#issue-3102428618)
 
 ## Database Design
