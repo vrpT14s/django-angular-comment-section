@@ -1,4 +1,16 @@
-<h1>Test</h1>
+<h1>Django-Angular Comment Section (DACS)</h1>
+
+<div class="new-comment-form">
+  <app-comment-form
+      (onFormSubmit)="this.newComment($event)">
+  </app-comment-form>
+</div>
+
 <div class="card-container">
-	<app-comment *ngFor="let comment of comments" [comment]="comment"></app-comment>
+	<app-comment
+	  *ngFor="let comment of comments"
+	  [comment]="comment"
+	  (onCommentUpdate)="this.updateComment($event)"
+	  (onCommentDelete)="this.deleteComment($event)">
+	</app-comment>
 </div>

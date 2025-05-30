@@ -3,4 +3,5 @@ export interface Comment {
   text?: string;
   image?: string;
   timestamp: Date;
+  edited: boolean;
 }

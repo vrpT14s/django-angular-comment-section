@@ -1,6 +1,17 @@
+.wide-textarea {
+  width: 100%;
+  max-width:100%;
+}
+
+mat-form-field {
+  width: 100%;
+  max-width: 100%;
+}
+
 mat-card {
-	//max-width: 100%;
-	margin: 16px auto;
+	max-width: min(400px, 100%);
+	margin: 16px;
+  justify-content: center;
 	//width: 100%;
 }
 
@@ -23,19 +34,4 @@ mat-card-actions {
   display: flex;
   justify-content: flex-end;
   //gap: 8px;
-}
-
-.line-justify {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%
-}
-
-.left {
-  text-align: left;
-}
-
-.right {
-  margin-left:auto
 }

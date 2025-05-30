@@ -1,10 +1,43 @@
 <mat-card>
 	<mat-card-header>
-		<b> {{ comment.timestamp | date:"medium" }} </b>
+    <div class="line-justify">
+      <span class="left">
+        <b> {{ comment.timestamp | date:"medium" }} </b>
+      </span>
+      <span class="right">
+        <div *ngIf="comment.edited">(edited)</div>
+      </span>
+    </div>
 	</mat-card-header>
-	<img mat-card-image *ngIf="comment.image" [src]="comment.image"/>
-	<mat-card-content *ngIf="comment.text">
+	<img mat-card-image *ngIf="!removeImage && previewImageUrl" [src]="previewImageUrl"/>
+
+	<mat-card-content *ngIf="comment.text && !isEditing">
 		{{ comment.text }}
 	</mat-card-content>
 
+  <form *ngIf="isEditing" [formGroup]="commentForm" (ngSubmit)="onUpdateSubmit()">
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Comment Text</mat-label>
+        <textarea matInput
+          formControlName="text"
+          rows="3"
+          placeholder="Type comment here"
+          [value]="comment.text"></textarea>
+      </mat-form-field>
+
+      <br>
+      <input type="file" accept="image/*" (change)="onFileChange($event)">
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-button type="button" (click)="onRemoveImage()">Remove Image</button>
+      <button mat-raised-button color="primary" type="submit">Update</button>
+      <button mat-button type="button" (click)="onDelete()">Delete</button>
+    </mat-card-actions>
+  </form>
+
+  <mat-card-actions *ngIf="!isEditing">
+    <button mat-button (click)="onEdit()">Edit</button>
+    <button mat-button (click)="onDelete()">Delete</button>
+  </mat-card-actions>
 </mat-card>

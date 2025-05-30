@@ -1,0 +1,22 @@
+<mat-card>
+  <mat-card-header>
+    <b>Post new comment</b>
+  </mat-card-header>
+	<img mat-card-image *ngIf="previewImageUrl" [src]="previewImageUrl"/>
+  <form [formGroup]="commentForm" (ngSubmit)="onSubmit()">
+    <mat-card-content>
+      <mat-form-field>
+        <mat-label>Comment Text</mat-label>
+        <textarea matInput
+                  placeholder="Type comment here"
+                  formControlName="text"></textarea>
+      </mat-form-field>
+
+      <br>
+      <input type="file" accept="image/*" (change)="onFileChange($event)">
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit">Submit</button>
+    </mat-card-actions>
+  </form>
+</mat-card>

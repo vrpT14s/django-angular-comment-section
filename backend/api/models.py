@@ -5,3 +5,4 @@ class Comment(models.Model):
     image = models.ImageField(upload_to='images/', null=True, blank=True)
         #^saved to backend/media/images/
     timestamp = models.DateTimeField(auto_now_add=True)
+    edited = models.BooleanField(default=False)
