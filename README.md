@@ -1,10 +1,8 @@
 # django-angular-comment-section
 This is an example/mock project to learn more about mainly angular but also some features of django. I am more interested in the backend and API's (so the backend-frontend connection) than UI/UX so I'll try to make the UI very minimal and simple but reactive so it won't feel like something I can do with plain html/css/js.
 
-# Demo (click to watch video)
-
-![Demo](
-[![Demo Video](./demo-image.jpg)](https://private-user-images.githubusercontent.com/142024691/449152465-94d30058-fd3b-43db-9803-8dc438bdf98d.mp4?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDg1OTI3MDcsIm5iZiI6MTc0ODU5MjQwNywicGF0aCI6Ii8xNDIwMjQ2OTEvNDQ5MTUyNDY1LTk0ZDMwMDU4LWZkM2ItNDNkYi05ODAzLThkYzQzOGJkZjk4ZC5tcDQ_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNTMwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDUzMFQwODA2NDdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0zZTViZDE4ZmI4YTAwMmU4Mzc1Nzk1NWU0YjJlZjMzZjc0MWJkMzAxZWQ1NGQ1MzNiZmI2ZTE2NGIzZjdiMDA2JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.wvEAnkzlFKw5520bVhjm-Cx4FzizlM1SodSN5waLh0U)
+# Demo (click to link to video)
+[![Demo Video](./demo-image.jpg)](https://github.com/vrpT14s/django-angular-comment-section/issues/1#issue-3102428618)
 
 ## Database Design
 Only one table that has text, an image and a timestamp.
