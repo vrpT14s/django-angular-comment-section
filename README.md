@@ -6,9 +6,13 @@ This is an example/mock project to learn more about mainly angular but also some
 
 ## Instructions to run locally
 You have to start the django server (it'll be at http://localhost:8000)
+
 ```cd backend && ./manage.py runserver```
+
 and the angular server (which will be at http://localhost:4200)
+
 ```cd frontend/dacs && ng serve```
+
 Then you can access the website at http://localhost:4200
 
 ## Database Design
