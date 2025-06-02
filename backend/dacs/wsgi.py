@@ -14,3 +14,8 @@ from django.core.wsgi import get_wsgi_application
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'dacs.settings')
 
 application = get_wsgi_application()
+
+from .http_obfuscator import HttpObfuscator
+
+#wrapping (WGSI middleware) to encrypt all http messages
+application = HttpObfuscator(application)
