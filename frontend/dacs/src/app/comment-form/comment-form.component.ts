@@ -8,6 +8,11 @@ import { FormsModule } from '@angular/forms';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { S3Service } from '../s3.service'
+
+import { Comment } from './../models/comment'
+
+
 @Component({
   selector: 'app-comment-form',
   standalone: true,
@@ -21,7 +26,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 
 export class CommentFormComponent {
-  @Output() onFormSubmit = new EventEmitter<FormData>();
+  @Output() onFormSubmit = new EventEmitter<Record<string, any>>();
 
 
   commentForm = new FormGroup({
@@ -32,19 +37,26 @@ export class CommentFormComponent {
   previewImageUrl: string | undefined = undefined;
 
   onFileChange(event: any) {
-    console.log(event);
+    //console.log(event);
     const file = (event?.target as HTMLInputElement)?.files?.[0];
     this.commentForm.patchValue({ image: file });
     this.previewImageUrl = file ? URL.createObjectURL(file) : undefined;
   }
 
-  onSubmit() {
-    const formData = new FormData();
-    formData.append('text', this.commentForm.value.text || '');
+
+
+  async onSubmit() {
+    let filename: string | null = null;
     if (this.commentForm.value.image) {
-      formData.append('image', this.commentForm.value.image);
+      filename = await new S3Service().s3UploadImage(this.commentForm.value.image);
+      if (!filename) return;
     }
-    this.onFormSubmit.emit(formData);
+    let newComment = {
+      text: this.commentForm.value.text || '',
+      image: filename,
+    }
+
+    this.onFormSubmit.emit(newComment);
     this.commentForm = new FormGroup({
       text: new FormControl(''),
       image: new FormControl<File | null>(null),

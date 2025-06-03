@@ -10,6 +10,7 @@
 	<app-comment
 	  *ngFor="let comment of comments"
 	  [comment]="comment"
+	  [imageUrlPrefix]="'http://localhost:9000/images/'"
 	  (onCommentUpdate)="this.updateComment($event)"
 	  (onCommentDelete)="this.deleteComment($event)">
 	</app-comment>

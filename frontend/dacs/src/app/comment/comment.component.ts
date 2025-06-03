@@ -13,6 +13,8 @@ import { FormsModule } from '@angular/forms';
 import { FormGroup, FormControl } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+import { S3Service } from '../s3.service'
+
 @Component({
   selector: 'app-comment',
   imports: [
@@ -25,9 +27,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class CommentComponent {
   @Input() comment!: Comment;
+  @Input() imageUrlPrefix!: string;
 
   @Output() onCommentDelete = new EventEmitter<number>();
-  @Output() onCommentUpdate = new EventEmitter<FormData>();
+  @Output() onCommentUpdate = new EventEmitter<Record<string, any>>();
 
   commentForm = new FormGroup({
     id: new FormControl(-1),
@@ -46,7 +49,8 @@ export class CommentComponent {
           id: this.comment.id,
           text: this.comment.text,
         });
-        this.previewImageUrl = this.comment.image;
+        if (this.comment.image) this.previewImageUrl = this.imageUrlPrefix + this.comment.image;
+        console.log(this.previewImageUrl);
     }
   }
 
@@ -63,7 +67,7 @@ export class CommentComponent {
   }
 
   onFileChange(event: any) {
-    console.log(event);
+    //console.log(event);
     const file = (event.target as HTMLInputElement)?.files?.[0];
     this.commentForm.patchValue({ image: file });
     this.previewImageUrl = file ? URL.createObjectURL(file) : undefined;
@@ -74,22 +78,23 @@ export class CommentComponent {
   }
 
 
-  onUpdateSubmit() {
-    const formData = new FormData();
-    formData.append('id', this.comment.id.toString());
+  async onUpdateSubmit() {
+    const form: Record<string, any> = {
+      id: this.comment.id,
+      edited: true
+    }
     if (this.commentForm.value.text != this.comment.text) {
-      formData.append('text', this.commentForm.value.text || '');
+      form.text = this.commentForm.value.text || '';
     }
-    const newImage = this.commentForm.value.image;
     if (this.removeImage) {
-      formData.append('image', '');
-    } else if (newImage) {
-      formData.append('image', newImage);
+      form.image = null;
+    } else if (this.commentForm.value.image) {
+      let filename = await new S3Service().s3UploadImage(this.commentForm.value.image);
+      if (!filename) return;
+      form.image = filename;
     }
-    formData.append('edited', "true");
-    console.log(formData);
 
-    this.onCommentUpdate.emit(formData);
+    this.onCommentUpdate.emit(form);
     this.isEditing = false;
     this.removeImage = false;
   }
